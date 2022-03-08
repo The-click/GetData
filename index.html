@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="input-block">
+            <input type="number" name="day" min="1" max="31" placeholder="DD" required>.<input name="month" type="number" min="1" max="12" placeholder="MM" required>.<input name="year" type="number" min="1970" max="3000" placeholder="YYYY" required>
+            <input type="submit" name="submit" value="Узнать дату">
+        </div>
+
+        <div class="answer">
+            Результат: <span class="answer-in"></span>
+        </div>
+
+<div class="code">
+Код функции:
+<pre>
+    function getDayInfo(data){
+        const daysWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        const monthName = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+    
+        data = data.split('.');
+        const currentDate = new Date(+data[2], +data[1] - 1, +data[0]);
+    
+        const dayWeek = daysWeek[currentDate.getDay()];
+        const month = monthName[currentDate.getMonth()];
+    
+        const daysCount = Math.ceil((currentDate - (new Date(+data[2], 0))) / 86400000);
+        const weekCount = Math.ceil(((daysCount - 1) / 7) + 1);
+    
+    
+        return `${dayWeek}, ${weekCount} неделя ${month} ${data[2]} года`;
+    
+    
+    }
+</pre>
+</div>
+    </div>
+    
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
